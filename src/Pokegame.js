@@ -8,11 +8,16 @@ class Pokegame extends Component {
     }
     render() {
         let hand1 = [];
-        let hand2 = [...this.props.pokemon];
-        while(hand1.length < hand2.length){
-            let randIdx = Math.floor(Math.random() * hand2.length);
-            let randPokemon = hand2.splice(randIdx, 1)[0];
-            hand1.push(randPokemon);
+        let hand2 = [];
+        for(let i = 0; i < 8; i++){
+            let randIdx = Math.floor(Math.random() * Pokemon.length);
+            let randPokemon = Pokemon.splice(randIdx, 1)[0];
+            if(i <= 3){
+                hand1.push(randPokemon);
+            }
+            else{
+                hand2.push(randPokemon);
+            }
         }
         let exp1 = hand1.reduce((exp, pokemon) => exp + pokemon.base_experience, 0);
         let exp2 = hand2.reduce((exp, pokemon) => exp + pokemon.base_experience, 0);
